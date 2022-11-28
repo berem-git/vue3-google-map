@@ -16,11 +16,11 @@
     <select-component
         v-model="selectedFilter"
         :options="filterOptions"
-      
+       
       />
       <select-component
         v-model="selectedFilterCity"
-        :options="selectUnique"
+        :options="selectUnique.cities"
         @click="sel(selectUnique)"
       />
   </div>

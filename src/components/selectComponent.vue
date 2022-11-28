@@ -24,6 +24,7 @@
   },
   methods: {
     changeOption(event) {
+    //console.log(this.options)
       this.$emit('update:modelValue', event.target.value);
     }
   }
