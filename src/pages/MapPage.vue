@@ -7,7 +7,7 @@
       :zoom="15"
     >
       <Marker
-        v-for="(location, i) in sortedLocation"
+        v-for="(location, i) in sortedLocationCity"
         :options="{ position: location }"
         :key="i"
         @click="clg(location.name,location.typeObj)"
@@ -20,8 +20,8 @@
       />
       <select-component
         v-model="selectedFilterCity"
-        :options="selectUnique.cities"
-        @click="sel(selectUnique)"
+        :options="selectUnique.arr._rawValue"
+        @click="sel(selectUnique.arr._rawValue)"
       />
   </div>
 </template>
@@ -32,6 +32,7 @@ import {useLocations} from "@/hooks/useLocation"
 import useFilterLocation from '@/hooks/useFilterLocation'
 import selectComponent from "@/components/selectComponent.vue";
 import useCity from "@/hooks/useCity"
+import useCityFilter from "@/hooks/useCityFilter";
 export default ({
   components: { GoogleMap, Marker,selectComponent },
   // eslint-disable-next-line no-unused-vars
@@ -49,11 +50,12 @@ export default ({
     const { locations } = useLocations();
     const {sortedLocation,selectedFilter }=useFilterLocation(locations)
     const {selectUnique}=useCity(locations)
+    const {sortedLocationCity, selectedFilterCity}=useCityFilter(sortedLocation)
     const sel=(selectUnique)=>{ 
       console.log(selectUnique)
     }
 
-    return { center, locations ,sel,sortedLocation,selectedFilter,selectUnique};
+    return { center, locations ,sel,sortedLocation,selectedFilter,selectUnique,sortedLocationCity,selectedFilterCity};
   },
 
 });

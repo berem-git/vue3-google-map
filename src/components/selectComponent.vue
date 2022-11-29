@@ -7,11 +7,11 @@
       :value="option.value"
     >
       {{ option.value }}
-    </option>
+    </option> 
   </select>
 </template>
 
-<script>
+<script> 
     export default {
     props: {
     modelValue: {
@@ -22,9 +22,9 @@
       default: () => []
     }
   },
-  methods: {
-    changeOption(event) {
-    //console.log(this.options)
+  methods: { 
+    changeOption(event) {  
+    console.log(this.options) 
       this.$emit('update:modelValue', event.target.value);
     }
   }
