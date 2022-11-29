@@ -7,7 +7,6 @@ export function useLocations() {
         try {
             const response = await axios.get('http://localhost:3000/data?Locale=ru-RU');
             locations.value = response.data;
-            console.log(response.data);
             locations.value.map(item=>(
                 item.lat=Number(item.lat.replace(/,/, '.')),
                 item.lng=Number(item.lng.replace(/,/, '.'))

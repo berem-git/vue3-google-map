@@ -18,11 +18,21 @@
         :options="filterOptions"
        
       />
-      <select-component
+      <!-- <select-component
         v-model="selectedFilterCity"
         :options="selectUnique.arr._rawValue"
-        @click="sel(selectUnique.arr._rawValue)"
-      />
+        @click="sel(selectUnique)"
+      />-->
+
+    <select  v-model="selectedFilterCity"> 
+    <option disabled value="">Выберите из списка</option>
+    <option
+    v-for="(city, i) in selectUnique.arr._rawValue"
+      :key="i"
+      :value="city.value"
+    >
+      {{ city.value }}
+    </option> </select>
   </div>
 </template>
   
@@ -33,6 +43,7 @@ import useFilterLocation from '@/hooks/useFilterLocation'
 import selectComponent from "@/components/selectComponent.vue";
 import useCity from "@/hooks/useCity"
 import useCityFilter from "@/hooks/useCityFilter";
+// import listComponent from "@/components/listComponent.vue";
 export default ({
   components: { GoogleMap, Marker,selectComponent },
   // eslint-disable-next-line no-unused-vars

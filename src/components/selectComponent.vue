@@ -9,9 +9,10 @@
       {{ option.value }}
     </option> 
   </select>
+
 </template>
 
-<script> 
+<script>  
     export default {
     props: {
     modelValue: {
@@ -24,7 +25,6 @@
   },
   methods: { 
     changeOption(event) {  
-    console.log(this.options) 
       this.$emit('update:modelValue', event.target.value);
     }
   }
@@ -32,5 +32,4 @@
 </script>
 
 <style scoped>
-
 </style>
