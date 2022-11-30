@@ -1,33 +1,35 @@
 <template>
   <div
-  @click="changeOption(option)"
     class="item"
-    :value="modelType"
+    :value="modelValue"
     v-for="option in options"
     :key="option.value"
   >
-   <li> {{ option.value }}</li>
+   <li  @click="changeOption(option)"> {{ option.value }}</li>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
+<script>  
+    export default {
+    props: {
+    modelValue: {
+      type: String
+    },
     options: {
       type: Array,
-      default: () => [],
-    },
-    modelType: {
-      type: String,
-    },
+      default: () => []
+    }
   },
-  methods: {
-    changeOption(event) {
-      console.log(event.value)
-      this.$emit("update:modelType", event.value);
+  
+  methods: { 
+    changeOption(event) {  
+      this.$emit('update:modelValue', event.value);
     },
+    forceRerender(){
+      this.$forceUpdate();
+    }
   },
-};
+}
 </script>
  
 <style scoped>
