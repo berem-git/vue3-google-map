@@ -8,15 +8,6 @@
 
 <script>
 export default {
-    props: {
-    modelTypeObj: {
-      type: String
-    },
-    options: {
-      type: Array,
-      default: () => []
-    }
-  },
     setup () {
         return {}
     }

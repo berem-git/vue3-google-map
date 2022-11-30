@@ -1,32 +1,37 @@
 <template>
-    <div
-      v-for="option in city"
-      :key="option.value"
-      @click="test(option.value)"
-    > 
-     {{ option.value }}
-</div>
-
+  <div
+  @click="changeOption(option)"
+    class="item"
+    :value="modelType"
+    v-for="option in options"
+    :key="option.value"
+  >
+   <li> {{ option.value }}</li>
+  </div>
 </template>
 
-<script> 
-    export default {
-    props: {
-        city: {
+<script>
+export default {
+  props: {
+    options: {
       type: Array,
-      default: () => []
+      default: () => [],
+    },
+    modelType: {
+      type: String,
     },
   },
-  setup() {
-    const test=(option)=>
-    {
-        console.log(option)
-    }
-    return{test}
-  }
-    }
+  methods: {
+    changeOption(event) {
+      console.log(event.value)
+      this.$emit("update:modelType", event.value);
+    },
+  },
+};
 </script>
  
 <style scoped>
-
+.item {
+  display: flex;
+}
 </style>

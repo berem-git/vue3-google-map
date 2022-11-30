@@ -15,12 +15,10 @@
       </GoogleMap>
 
       <block-item-component class="wrapper_block">
-        <select-component
-          style="z-index: 10"
+        <list-component
           v-model="selectedFilter"
           :options="filterOptions" />
         <select-component
-          style="z-index: 10"
           v-model="selectedFilterCity"
           :options="selectUnique.arr._rawValue"
       /></block-item-component>
@@ -34,9 +32,9 @@ import selectComponent from "@/components/selectComponent.vue";
 import useCity from "@/hooks/useCity";
 import useCityFilter from "@/hooks/useCityFilter";
 import blockItemComponent from "@/components/blockItemComponent.vue";
-// import listComponent from "@/components/listComponent.vue";
+import listComponent from "@/components/listComponent.vue";
 export default {
-  components: { GoogleMap, Marker, selectComponent, blockItemComponent },
+  components: { GoogleMap, Marker, selectComponent, blockItemComponent,listComponent},
   // eslint-disable-next-line no-unused-vars
   data() {
     return {
@@ -57,7 +55,6 @@ export default {
     return {
       center,
       locations,
-
       sortedLocation,
       selectedFilter,
       selectUnique,
