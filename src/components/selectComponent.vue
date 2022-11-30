@@ -1,6 +1,5 @@
 <template>
-  <select :value="modelValue" @change="changeOption">
-    <option disabled value="">Выберите из списка</option>
+  <select :value="modelValue" @change="changeOption" @click="forceRerender">
     <option
       v-for="option in options"
       :key="option.value"
@@ -23,12 +22,16 @@
       default: () => []
     }
   },
+  
   methods: { 
     changeOption(event) {  
       this.$emit('update:modelValue', event.target.value);
+    },
+    forceRerender(){
+      this.$forceUpdate();
     }
-  }
-    }
+  },
+}
 </script>
 
 <style scoped>
