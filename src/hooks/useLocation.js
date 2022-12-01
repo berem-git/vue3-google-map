@@ -7,7 +7,7 @@ export function useLocations() {
     try {
       const response = await axios.get("http://localhost:3000/data?", {
         params: {
-          _Locale: "ru-RU",
+          Locale: "ru-RU",
         },
       });
       locations.value = response.data;

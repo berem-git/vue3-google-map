@@ -16,15 +16,15 @@ export default {
 
 <style scoped>
 .block{
-background-color: white;
-  width: 70vw;
-  height: 80px;
-  border-radius: 24px;
+   background-color: white;
+   height: 70px;
+   border-radius: 24px;
    display: flex;
-   flex-wrap: wrap;
    justify-content: space-between;
    align-items: center; 
    padding: 0 50px;
+   list-style: none;
+   cursor: pointer;
 }
 
 </style>

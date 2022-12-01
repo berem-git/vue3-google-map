@@ -11,7 +11,7 @@ export default function useCity(locations) {
             arr.value.push({value: el});
         })
         return {arr};
-    })
+    });
     return {
         selectUnique
     }
