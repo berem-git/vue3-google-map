@@ -4,36 +4,43 @@
     :value="modelValue"
     v-for="option in options"
     :key="option.value"
+    @click="changeOption(option)"
   >
-   <li  @click="changeOption(option)"> {{ option.value }}</li>
+    <li>
+      {{ option.value }}
+    </li>
   </div>
 </template>
 
-<script>  
-    export default {
-    props: {
+<script>
+export default {
+  data() {
+    return {
+      activeClass: 'container',
+    };
+  },
+  props: {
     modelValue: {
-      type: String
+      type: String,
     },
     options: {
       type: Array,
-      default: () => []
-    }
-  },
-  
-  methods: { 
-    changeOption(event) {  
-      this.$emit('update:modelValue', event.value);
+      default: () => [],
     },
-    forceRerender(){
-      this.$forceUpdate();
-    }
+    // eslint-disable-next-line no-unused-vars
   },
-}
+
+  methods: {
+    changeOption(event) {
+      this.$emit("update:modelValue", event.value);
+    },
+  },
+};
 </script>
  
 <style scoped>
 .item {
   display: flex;
 }
+
 </style>

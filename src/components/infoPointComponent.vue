@@ -1,15 +1,34 @@
 <template>
-    <div>
-
+    <div class="dialog" v-if="show" @click="hideDialog">
+      <div class="dialog__content">
+       <slot></slot>
+      </div>
     </div>
-</template>
+  </template>
+  
+  <script>
+  import toggleMixin from "@/mixins/toggleMixin";
+  
+  export default {
+    mixins: [toggleMixin],
+  }
+  </script>
+  
+  <style scoped>
+  .dialog {
 
-<script>
-    export default {
-        
-    }
-</script>
-
-<style scoped>
-
-</style>
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+  }
+  
+  .dialog__content {
+    margin: auto;
+    background: white;
+    border-radius: 12px;
+    min-height: 50px;
+    min-width: 300px;
+    padding: 20px;
+  }
+  </style>
+  

@@ -16,13 +16,17 @@
       ></Marker>
     </GoogleMap>
 
-    <nav class="nav"></nav>
-    <block-item-component class="wrapper_block">
-      <list-component v-model="selectedFilter" :options="filterOptions" />
-      <select-component
-        v-model="selectedFilterCity"
-        :options="selectUnique.arr._rawValue"
-    /></block-item-component>
+    <nav class="nav">
+      <block-item-component class="wrapper_block">
+        <list-component v-model="selectedFilter" :options="filterOptions" />
+        <select-component
+          v-model="selectedFilterCity"
+          :options="selectUnique.arr._rawValue"
+      /></block-item-component>
+      <info-point-component v-model:show="dialogVisible"
+        >iiyf</info-point-component
+      >
+    </nav>
   </div>
 </template>
   <script>
@@ -36,6 +40,7 @@ import useCityFilter from "@/hooks/useCityFilter";
 import blockItemComponent from "@/components/blockItemComponent.vue";
 import listComponent from "@/components/listComponent.vue";
 import useSchedule from "@/hooks/useSchedule";
+import infoPointComponent from "@/components/infoPointComponent.vue";
 export default {
   components: {
     GoogleMap,
@@ -43,6 +48,7 @@ export default {
     selectComponent,
     blockItemComponent,
     listComponent,
+    infoPointComponent,
   },
   // eslint-disable-next-line no-unused-vars
   data() {
@@ -57,17 +63,21 @@ export default {
   // eslint-disable-next-line no-unused-vars
   setup(props) {
     const selectPoint = ref({});
-    const center = { lat: 42.86885, lng: 74.61727 };
+    const dialogVisible = ref(false);
+    const center = ref({ lat: 42.86885, lng: 74.61727 });
     const { locations } = useLocations();
     const { selectedFilter, sortedLocation } = useFilterLocation(locations);
     const { selectUnique } = useCity(locations);
     const { sortedLocationCity, selectedFilterCity } =
       useCityFilter(sortedLocation);
     const { scheduleInfo } = useSchedule(selectPoint);
+
     const clg = (location) => {
       selectPoint.value = location;
-      console.log(scheduleInfo.value)
+      dialogVisible.value = true;
+      console.log(dialogVisible.value);
     };
+
     return {
       center,
       clg,
@@ -79,6 +89,7 @@ export default {
       selectedFilterCity,
       selectPoint,
       scheduleInfo,
+      dialogVisible,
     };
   },
 };
@@ -86,18 +97,19 @@ export default {
   
   <style scoped>
 .wrapper {
-  position: relative;
   width: 100%;
-  padding-top: 50px;
+  height: 100%;
+  position: absolute;
+  padding-top: 30px;
+  left: 0;
+  overflow: auto;
 }
 .nav {
-  position: relative;
-  width: 100%;
-  max-width: 1100px;
+  width: 80%;
   margin: 0 auto;
 }
 .wrapper_block {
-  top: 150px;
+  top: 130px;
   position: absolute;
   width: 70%;
   margin: 0 auto;

@@ -1,19 +1,20 @@
 import { computed } from "vue";
-export default function useSchedule(piont) {
-  console.log(piont.value)
+export default function useSchedule(point) {
+
+  console.log(point.value)
   // eslint-disable-next-line vue/return-in-computed-property
   const scheduleInfo = computed(() => {
-   if (piont.value.typeObj === "Офис") {
-      return(piont.value.Schedule.match(/офис:(.*)/gm));
+   if (point.value.typeObj === "Офис") {
+      return(point.value.Schedule.match(/офис:(.*)/gm));
     }
-    if (piont.value.typeObj === "Терминал") {
-      return( piont.value.Schedule.match(/платёжный терминал:[^,]*/gm));
+    if (point.value.typeObj === "Терминал") {
+      return( point.value.Schedule.match(/платёжный терминал:(.*(?=, офис))/gm));
     }
-    if (piont.value.typeObj === "Банкомат") {
-      return( piont.value.Schedule.match(/^[^,]*/gm));
+    if (point.value.typeObj === "Банкомат") {
+      return( point.value.Schedule.match(/^[^,]*/gm));
     }
   }); 
   return {
-    scheduleInfo,
+    scheduleInfo
   };
 }
