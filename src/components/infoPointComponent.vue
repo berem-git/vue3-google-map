@@ -16,7 +16,6 @@
   
   <style scoped>
   .dialog {
-
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
     display: flex;

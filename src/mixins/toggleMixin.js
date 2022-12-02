@@ -1,8 +1,15 @@
+
 export default {
     props: {
         show: {
             type: Boolean,
             default: false
+        },
+        data:{
+                type: Array
+        },
+        schedule:{
+            type:String
         }
     },
     methods: {
@@ -10,8 +17,4 @@ export default {
             this.$emit('update:show', false)
         }
     },
-    mounted() {
-        console.log('mixin mounted')
-    }
-    // ...
 }

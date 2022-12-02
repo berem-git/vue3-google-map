@@ -29,7 +29,7 @@
       this.$emit('update:modelValue', event.target.value);
     },
     forceRerender(){
-      this.$forceUpdate();
+      this.$forceUpdate();      
     }
   },
 }

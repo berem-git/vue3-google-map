@@ -4,7 +4,7 @@
   <div class="wrapper">
     <GoogleMap
       api-key="AIzaSyCRmaMGXCNH9lHbN5T9Kl-YulB29uuLeNI"
-      style="width: 100%; height: 500px; position: absolute"
+      style="width: 100%; height: 80vh; position: absolute"
       :center="center"
       :zoom="15"
     >
@@ -23,9 +23,10 @@
           v-model="selectedFilterCity"
           :options="selectUnique.arr._rawValue"
       /></block-item-component>
-      <info-point-component v-model:show="dialogVisible"
-        >iiyf</info-point-component
-      >
+      <info-point-component
+        v-model:show="dialogVisible"
+        v-model:schedule="scheduleInfo"
+      />
     </nav>
   </div>
 </template>
@@ -50,7 +51,6 @@ export default {
     listComponent,
     infoPointComponent,
   },
-  // eslint-disable-next-line no-unused-vars
   data() {
     return {
       filterOptions: [
@@ -64,6 +64,7 @@ export default {
   setup(props) {
     const selectPoint = ref({});
     const dialogVisible = ref(false);
+
     const center = ref({ lat: 42.86885, lng: 74.61727 });
     const { locations } = useLocations();
     const { selectedFilter, sortedLocation } = useFilterLocation(locations);
@@ -75,7 +76,7 @@ export default {
     const clg = (location) => {
       selectPoint.value = location;
       dialogVisible.value = true;
-      console.log(dialogVisible.value);
+      console.log(scheduleInfo);
     };
 
     return {
