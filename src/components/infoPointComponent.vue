@@ -1,33 +1,49 @@
 <template>
-    <div class="dialog" v-if="show" @click="hideDialog">
-      <div class="dialog__content">
-       <slot></slot>
+  <div class="dialog" v-if="show">
+    <div class="dialog__content">
+      <p @click="hideDialog">Закрыть</p>
+      <div > 
+          {{ selectPiont.typeObj }}
       </div>
+      <div > 
+          {{ selectPiont.name }}
+      </div>
+      <div > 
+          {{ selectPiont.address }}
+      </div>
+      <div > 
+        {{ schedule[0] }}
+      </div>
+      
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
-  import toggleMixin from "@/mixins/toggleMixin";
-  
-  export default {
-    mixins: [toggleMixin],
-  }
-  </script>
+import toggleMixin from "@/mixins/toggleMixin";
+
+export default {
+  mixins: [toggleMixin],
+};
+</script>
   
   <style scoped>
-  .dialog {
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    display: flex;
-  }
-  
-  .dialog__content {
-    margin: auto;
-    background: white;
-    border-radius: 12px;
-    min-height: 50px;
-    min-width: 300px;
-    padding: 20px;
-  }
-  </style>
+.dialog {
+  font-size: 22px;
+  position: fixed;
+  display: flex;
+}
+.dialog__content {
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  width: 340px;
+  height: 440px;
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+
+</style>
   

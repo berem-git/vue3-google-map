@@ -1,18 +1,14 @@
-import {computed,ref} from 'vue'
+import { computed } from "vue";
 
 export default function useCity(locations) {
-    let arrSet = new Set();
-    const arr = ref([]);
-    const selectUnique= computed(() => {
-        locations.value.forEach(element => {
-            arrSet.add(element.city);
-        });
-        arrSet.forEach(el=>{
-            arr.value.push({value: el});
-        })
-        return {arr};
+  let arrSet = new Set();
+  const selectUnique = computed(() => {
+    locations.value.forEach((element) => {
+      arrSet.add(element.city);
     });
-    return {
-        selectUnique
-    }
+    return arrSet;
+  });
+  return {
+    selectUnique,
+  };
 }

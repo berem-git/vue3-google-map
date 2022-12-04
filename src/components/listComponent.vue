@@ -6,7 +6,7 @@
     :key="option.value"
     @click="changeOption(option)"
   >
-    <li>
+    <li class="list_item">
       {{ option.value }}
     </li>
   </div>
@@ -16,7 +16,7 @@
 export default {
   data() {
     return {
-      activeClass: 'container',
+      activeClass: "container",
     };
   },
   props: {
@@ -39,8 +39,11 @@ export default {
 </script>
  
 <style scoped>
+.list_item:hover {
+  color: red;
+  cursor: pointer;
+}
 .item {
   display: flex;
 }
-
 </style>

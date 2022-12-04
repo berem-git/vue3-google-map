@@ -1,5 +1,5 @@
 <template>
-  <MapPage/>
+  <MapPage />
 </template>
 
 <script>
@@ -19,4 +19,19 @@ export default {
 *:after {
   box-sizing: border-box;
 }
+/* ::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #6d6d6d; 
+} */
 </style>

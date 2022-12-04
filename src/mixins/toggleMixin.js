@@ -1,20 +1,21 @@
-
 export default {
-    props: {
-        show: {
-            type: Boolean,
-            default: false
-        },
-        data:{
-                type: Array
-        },
-        schedule:{
-            type:String
-        }
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
     },
-    methods: {
-        hideDialog() {
-            this.$emit('update:show', false)
-        }
+    selectPiont: {
+      type: Object,
+      default: () => [],
     },
-}
+    schedule: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  methods: {
+    hideDialog() {
+      this.$emit("update:show", false);
+    },
+  },
+};

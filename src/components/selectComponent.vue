@@ -1,38 +1,34 @@
 <template>
   <div class="select-dropdown">
-  <select :value="modelValue" @change="changeOption" @click="forceRerender">
-    <option
-      v-for="option in options"
-      :key="option.value"
-      :value="option.value"
-    >
-      {{ option.value }}
-    </option> 
-  </select>
-</div>
+    <select :value="modelValue" @change="changeOption" @click="forceRerender">
+      <option v-for="option in options" :key="option" :value="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
 </template>
 
-<script>  
-    export default {
-    props: {
+<script>
+export default {
+  props: {
     modelValue: {
-      type: String
+      type: String,
     },
     options: {
-      type: Array,
-      default: () => []
-    }
-  },
-  
-  methods: { 
-    changeOption(event) {  
-      this.$emit('update:modelValue', event.target.value);
+      type: Set,
+      default: () => [],
     },
-    forceRerender(){
-      this.$forceUpdate();      
-    }
   },
-}
+
+  methods: {
+    changeOption(event) {
+      this.$emit("update:modelValue", event.target.value);
+    },
+    forceRerender() {
+      this.$forceUpdate();
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -45,21 +41,22 @@
 }
 .select-dropdown {
   position: relative;
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
   border-radius: 4px;
 }
 .select-dropdown select {
-  font-size: 1rem;
+  font-size: 22px;
   font-weight: normal;
   max-width: 100%;
   padding: 8px 24px 8px 10px;
   border: none;
   background-color: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
-.select-dropdown select:active, .select-dropdown select:focus {
+.select-dropdown select:active,
+.select-dropdown select:focus {
   outline: none;
   box-shadow: none;
 }
