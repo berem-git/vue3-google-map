@@ -9,7 +9,7 @@
     </div>
     </nav>
     <GoogleMap
-      api-key="AIzaSyCRmaMGXCNH9lHbN5T9Kl-YulB29uuLeNI"
+      api-key=""
       style="width: 100%; height: 80vh"
       :center="center"
       :zoom="15"
