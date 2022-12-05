@@ -3,20 +3,20 @@
     <nav class="nav">
       <div class="content_block">
       <block-item-component>
-        <list-component v-model="selectedFilter" :options="filterOptions" />
+        <list-component @click="test" v-model="selectedFilter" :options="filterOptions" />
         <select-component v-model="selectedFilterCity" :options="selectUnique"
       /></block-item-component>
     </div>
     </nav>
     <GoogleMap
-      api-key=""
+      api-key='AIzaSyCRmaMGXCNH9lHbN5T9Kl-YulB29uuLeNI'
       style="width: 100%; height: 80vh"
       :center="center"
       :zoom="15"
     >
       <Marker
       style=" font-size: 22px"
-        v-for="(location, i) in sortedLocationCity"
+        v-for="(location, i) in sortedLocation"
         :options="{ position: location }"
         :key="i"
         @click="clg(location)"
@@ -34,15 +34,15 @@
   <script>
 import { ref } from "vue";
 import { GoogleMap, Marker } from "vue3-google-map";
-import { useLocations } from "@/hooks/useLocation";
+
 import useFilterLocation from "@/hooks/useFilterLocation";
 import selectComponent from "@/components/selectComponent.vue";
-import useCity from "@/hooks/useCity";
-import useCityFilter from "@/hooks/useCityFilter";
+import {useCity} from "@/hooks/useCity";
 import blockItemComponent from "@/components/blockItemComponent.vue";
 import listComponent from "@/components/listComponent.vue";
 import useSchedule from "@/hooks/useSchedule";
 import infoPointComponent from "@/components/infoPointComponent.vue";
+
 export default {
   components: {
     GoogleMap,
@@ -66,26 +66,31 @@ export default {
     const selectPiontInfo = ref([]);
     const dialogVisible = ref(false);
     const center = ref({ lat: 42.86885, lng: 74.61727 });
+    const selectedFilterCity=ref('Бишкек')
+    const selectedFilter=ref('Банкомат')
 
-    const { locations } = useLocations();
-    const { selectedFilter, sortedLocation } = useFilterLocation(locations);
-    const { selectUnique } = useCity(locations);
-    const { sortedLocationCity, selectedFilterCity } =
-      useCityFilter(sortedLocation);
+    const { selectUnique } = useCity();
+    const { sortedLocation } = useFilterLocation(selectedFilter,selectedFilterCity);
     const { scheduleInfo } = useSchedule(selectPiontInfo);
 
     const clg = (location) => {
       selectPiontInfo.value = location;
       dialogVisible.value = true;
+      console.log(sortedLocation)
     };
+
+    const test=()=>{
+      console.log(sortedLocation)
+    }
+
     return {
       center,
+      test,
       clg,
-      locations,
       sortedLocation,
       selectedFilter,
       selectUnique,
-      sortedLocationCity,
+      //sortedLocationCity,
       selectedFilterCity,
       selectPiontInfo,
       scheduleInfo,
